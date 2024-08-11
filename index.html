@@ -9,5 +9,19 @@
   <body>
     <div id="app"></div>
     <script type="module" src="/main.js"></script>
+    <script>
+      const fpPromise = import('https://fpjscdn.net/v3/d4jZTTYGvR9ADj4pVcj4')
+        .then(fpJs => fpJs.load())
+      fpPromise
+        .then(fp => fp.get())
+        .then(result => {
+          const visitorId = result.visitorId
+
+          console.log("🚀🚀🚀 ----------------------------------🚀🚀🚀");
+          console.log("🚀🚀🚀  visitorId🚀🚀🚀", visitorId);
+          console.log("🚀🚀🚀 ----------------------------------🚀🚀🚀");
+
+        })
+    </script>
   </body>
 </html>
