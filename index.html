@@ -2,30 +2,38 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
+    <link rel="shortcut icon" href="./public/favicon.ico" type="image/x-icon">
+    <title>WebAssembly</title>
   </head>
   <body>
     <div id="app"></div>
-    <script type="module" src="/main.js"></script>
+    <script src="./public/fibonacci/fibonacci.js"></script>
     <script>
-      const fpPromise = import('https://fpjscdn.net/v3/d4jZTTYGvR9ADj4pVcj4')
-        .then(fpJs => fpJs.load({
-        apiKey: "d4jZTTYGvR9ADj4pVcj4",
-        endpoint: "https://www.renshuai.asia",
-        scriptUrlPattern: "https://www.renshuai.asia/web/v<version>/<apiKey>/loader_v<loaderVersion>.js"
-      }))
-      fpPromise
-        .then(fp => fp.get())
-        .then(result => {
-          const visitorId = result.visitorId
+        // Load the WebAssembly module
+        Module.onRuntimeInitialized = function() {
+              function fibonacciJs(n) {
+                if(n<=1) {
+                  return n
+                }
+                return fibonacciJs(n-1) + fibonacciJs(n-2)
+              }
 
-          console.log("🚀🚀🚀 ----------------------------------🚀🚀🚀");
-          console.log("🚀🚀🚀  visitorId🚀🚀🚀", visitorId);
-          console.log("🚀🚀🚀 ----------------------------------🚀🚀🚀");
+              const num = 40;
 
-        })
+              const startCpp = performance.now()
+              const resultCpp = Module._fibonacci(num);
+              const endCpp = performance.now()
+
+              const startJs = performance.now()
+              const resultJs = fibonacciJs(num);
+              const endJs = performance.now()
+
+              console.log("🚀🚀🚀 ----------------------------🚀🚀🚀");
+              console.log("🚀🚀🚀  resultCpp🚀🚀🚀", `${resultCpp}:${endCpp-startCpp}`);
+              console.log("🚀🚀🚀  resultJs🚀🚀🚀", `${resultJs}:${endJs-startJs}`);
+              console.log("🚀🚀🚀 ----------------------------🚀🚀🚀");
+        };
     </script>
   </body>
 </html>
