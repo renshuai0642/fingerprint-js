@@ -22,3 +22,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# fingerprint相关配置信息
+records (A).csv
+records (CNAME).csv

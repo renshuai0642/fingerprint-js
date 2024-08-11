@@ -11,7 +11,11 @@
     <script type="module" src="/main.js"></script>
     <script>
       const fpPromise = import('https://fpjscdn.net/v3/d4jZTTYGvR9ADj4pVcj4')
-        .then(fpJs => fpJs.load())
+        .then(fpJs => fpJs.load({
+        apiKey: "d4jZTTYGvR9ADj4pVcj4",
+        endpoint: "https://www.renshuai.asia",
+        scriptUrlPattern: "https://www.renshuai.asia/web/v<version>/<apiKey>/loader_v<loaderVersion>.js"
+      }))
       fpPromise
         .then(fp => fp.get())
         .then(result => {
