@@ -16,6 +16,9 @@
 
 export default {
     /** 共享选项 */
+    // 项目根目录（index.html所在位置）
+    // root: process.cwd(),
+
     // 该目录中的文件，将在构建期间复制到 `outDir` 的根目录
     // 原汁原味地复制，没有转换
     publicDir: "public", // 默认
@@ -42,7 +45,7 @@ export default {
         // 非HTML入口模式、Library模式，请看文档
         modulePreload: true, // 默认
 
-        // 相对于根目录，指定输出路径
+        // 相对于根目录`root`，指定输出路径
         outDir: 'dist', // 默认
 
         // 相对于ourDir，指定静态资源存放路径
@@ -86,7 +89,7 @@ export default {
         // 如果制定了 build.rollupOptions.input，Vite 将转而去抓取这些入口点。
         // 如果这两者都不合你意，则可以使用此选项指定自定义条目——该值需要遵循 fast-glob 模式 ，或者是相对于 Vite 项目根目录的匹配模式数组。当显式声明了 optimizeDeps.entries 时默认只有 node_modules 和 build.outDir 文件夹会被忽略。如果还需忽略其他文件夹，你可以在模式列表中使用以 ! 为前缀的、用来匹配忽略项的模式。如果你不想忽略 node_modules 和 build.outDir，你可以选择直接使用字符串路径（不使用 fast-glob 模式）。
         // string | string[]
-        // entries: 
+        entries: './public/index.html', 
 
         // 预构建中，强制排除的依赖项
         // string[]
